@@ -20,7 +20,7 @@ for file in "$SCRIPTS_DIR"/*.sh; do
     echo "Name=$name" >> "$desktop_file"
     echo "Icon=$RESOURCES_DIR/mowbot_app_icon.jpg" >> "$desktop_file"
     echo "Exec=$command" >> "$desktop_file"
-    echo "Terminal=true" >> "$desktop_file"
+    echo "Terminal=false" >> "$desktop_file"
 
     # Make the desktop launcher file executable
     chmod +x "$desktop_file"
