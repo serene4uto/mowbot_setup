@@ -1,5 +1,5 @@
 SETUP_DIR="/home/$USER/mowbot_project/mowbot_setup"
-SCRIPTS_DIR="/home/$USER/mowbot_project/mowbot_setup/scripts"
+SCRIPTS_DIR="/home/$USER/mowbot_project/mowbot_setup/scripts/misc"
 RESOURCES_DIR="/home/$USER/mowbot_project/mowbot_setup/resources"
 
 # Loop through each Bash script in the directory
@@ -12,8 +12,7 @@ for file in "$SCRIPTS_DIR"/*.sh; do
     desktop_file="$name.desktop"
 
     # Set the command to execute the script in a new terminal window
-    # command="gnome-terminal -- bash -c 'bash $file; exec bash'"
-    command="bash -c 'bash $file; exec bash'"
+    command="gnome-terminal -- bash -c 'bash $file; exec bash'"
 
     # Create the desktop launcher file
     echo "[Desktop Entry]" > "$desktop_file"
@@ -21,7 +20,7 @@ for file in "$SCRIPTS_DIR"/*.sh; do
     echo "Name=$name" >> "$desktop_file"
     echo "Icon=$RESOURCES_DIR/mowbot_app_icon.jpg" >> "$desktop_file"
     echo "Exec=$command" >> "$desktop_file"
-    echo "Terminal=false" >> "$desktop_file"
+    echo "Terminal=true" >> "$desktop_file"
 
     # Make the desktop launcher file executable
     chmod +x "$desktop_file"
