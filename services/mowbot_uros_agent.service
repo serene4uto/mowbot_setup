@@ -1,0 +1,12 @@
+[Unit]
+Description=Mowbot Micro-ROS Agent
+After=docker.service
+Requires=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run -it --rm -v /dev:/dev -v /dev/shm:/dev/shm --name mowbot_uros_agent --privileged --net=host microros/micro-ros-agent:humble serial --dev /dev/MBB-UROS -v6
+Restart=always
+ExecStop=/usr/bin/docker stop mowbot_uros_agent
+
+[Install]
+WantedBy=multi-user.target
