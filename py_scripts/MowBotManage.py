@@ -58,7 +58,7 @@ class ScriptButton:
 
         self.button['state'] = 'disabled'
         print("Terminating...")
-        sleep(5)
+        sleep(2)
         self.button['state'] = 'normal'
         self.state = 'Start'
         self.button.config(text='Start')
@@ -66,7 +66,7 @@ class ScriptButton:
 
 def main():
     root = tk.Tk()
-    root.title("Bash Script Runner")
+    root.title("AMR MowBot Demo")
 
     # List of bash scripts with custom names and their file paths
     scripts = [
