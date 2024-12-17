@@ -12,16 +12,27 @@ class ScriptButton:
         self.name = name                # Custom name for the script
         self.state = 'Start'            # Initial state of the button
 
-        # Create a frame to hold the label and button side by side
-        self.frame = tk.Frame(master)
-        self.frame.pack(pady=5)
+        self.frame = tk.Frame(master, bd=5, relief='ridge')  # Add border for visibility
+        self.frame.pack(pady=10, padx=10, fill='x', expand=True)
 
-        # Create and pack the label and button
-        self.label = tk.Label(self.frame, text=self.name, width=50, anchor='w')
-        self.label.pack(side='left')
+        self.label = tk.Label(
+            self.frame, 
+            text=self.name, 
+            width=30,                # Adjust width
+            anchor='w', 
+            font=('Arial', 16)       # Bigger font
+        )
+        self.label.pack(side='left', padx=20, pady=10)  # Add padding around label
 
-        self.button = tk.Button(self.frame, text='Start', width=10, command=self.on_button_click)
-        self.button.pack(side='left')
+        self.button = tk.Button(
+            self.frame, 
+            text='Start', 
+            width=12,              # Adjust button width
+            height=2,              # Adjust button height
+            font=('Arial', 14, 'bold'),  # Bigger and bold font
+            command=self.on_button_click
+        )
+        self.button.pack(side='left', padx=20, pady=10)  # Add padding around button
 
     def on_button_click(self):
         if self.state == 'Start':
@@ -70,11 +81,11 @@ def main():
 
     # List of bash scripts with custom names and their file paths
     scripts = [
-        {
-            'name': 'uRos Agent',
-            'start_script_path': '/home/farmbot/mowbot_project/mowbot_setup/scripts/uros-agent.sh',
-            'end_script_path': '/home/farmbot/mowbot_project/mowbot_setup/scripts/terminate/end-uros-agent.sh'
-        },
+        # {
+        #     'name': 'uRos Agent',
+        #     'start_script_path': '/home/farmbot/mowbot_project/mowbot_setup/scripts/uros-agent.sh',
+        #     'end_script_path': '/home/farmbot/mowbot_project/mowbot_setup/scripts/terminate/end-uros-agent.sh'
+        # },
 
         {
             'name': 'AMR Bring Up',

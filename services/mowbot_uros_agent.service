@@ -1,12 +1,27 @@
 [Unit]
-Description=Mowbot Micro-ROS Agent
-After=docker.service
+Description=mowbot_uros_agent Docker Container
 Requires=docker.service
+After=docker.service
 
 [Service]
-ExecStart=/usr/bin/docker run -it --rm -v /dev:/dev -v /dev/shm:/dev/shm --name mowbot_uros_agent --privileged --net=host microros/micro-ros-agent:humble serial --dev /dev/MBB-UROS -v6
+# Run the container in detached mode
+ExecStart=/usr/bin/docker run \
+  --rm \
+  --name mowbot_uros_agent \
+  --privileged \
+  --net=host \
+  -v /dev:/dev \
+  -v /dev/shm:/dev/shm \
+  microros/micro-ros-agent:humble \
+  serial --dev /dev/MBB-UROS -v6
+
+# Ensure the service restarts if it crashes
 Restart=always
-ExecStop=/usr/bin/docker stop mowbot_uros_agent
+RestartSec=10
+
+# If you prefer running the container in the background, add `-d` and possibly remove `--rm`
+# ExecStart=/usr/bin/docker run -d --name mowbot_uros_agent --privileged --net=host -v /dev:/dev -v /dev/shm:/dev/shm microros/micro-ros-agent:humble serial --dev /dev/MBB-UROS -v6
+# Note: If you use -d, the `Restart=always` will still handle restarts.
 
 [Install]
 WantedBy=multi-user.target
